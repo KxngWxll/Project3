@@ -1,12 +1,22 @@
-name: CI
+name: CI/CD Pipeline
 
-on: [push]
+on:
+  push:
+    branches:
+      - develop
+      - feature/*
+  pull_request:
+    branches:
+      - develop
+      - master
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Run a one-line script
-      run: echo How are we living, CI/CD Pipeline!?
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run a CI/CD test script
+        run: echo 'I hopethis makes the CI/CD Workflow Running Successfully!'
